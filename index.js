@@ -1,16 +1,14 @@
-    'use strict'
+    const express = require('express')
+    const app = express()    
+    const mongoose = require('mongoose')
+    const crypto = require('crypto')
+    const bodyParser = require('body-parser')
+    const jwt = require('jsonwebtoken')
 
-    var express = require('express')
-    var app = express()    
-    var mongoose = require('mongoose')
-    var crypto = require('crypto')
-    var bodyParser = require('body-parser')
-    var jwt = require('jsonwebtoken')
+    const config = require('./config')
+    const User = require('./models/user')
 
-    var config = require('./config')
-    var User = require('./models/user')
-
-    var port = process.env.PORT || 3000;   
+    const port = process.env.PORT || 3000;   
 
     console.log('db',config.database)
     mongoose.connect(config.database)
@@ -34,8 +32,8 @@
     }
 
     function getTokenJson(user) {
-        var expiresIn = 1400
-        var token = jwt.sign(user, app.get('superSecret'), {'expiresIn': expiresIn})
+        const expiresIn = 1400
+        const token = jwt.sign(user, app.get('superSecret'), {'expiresIn': expiresIn})
         return {token: token, expiresIn: expiresIn}
     }
 
@@ -47,7 +45,7 @@
 
     // route middleware to verify a token
     apiRoutes.use(function(req, res, next ) {
-        var token = req.headers[config.token_header_name]
+        const token = req.headers[config.token_header_name]
 
         console.log('token', token)
 
