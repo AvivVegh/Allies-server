@@ -72,7 +72,7 @@
     })
 
     apiRoutes.get('/',function(req, res) {
-        res.send('Kotlin-node restful api')
+        res.send('Allies restful api')
     })
 
     apiRoutes.post('/auth',function(req, res) { 
