@@ -5,4 +5,4 @@
         res.send('Allies restful api')
     })
 
-    module.exports = router;    
+    module.exports = router;
